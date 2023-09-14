@@ -8,7 +8,7 @@ using namespace std;
 int factorial(int N) {
 
 	int res = 1;
-	for (int i = N; i > 1; i++) {
+	for (int i = N; i > 1; i--) {
 		res *= i;
 	}
 	cout << "Result is: " << res << endl;
@@ -20,6 +20,7 @@ int main() {
 
 	int x;
 	// Used the future to pass value from child (Thread) thread to parent (Main) thread!!
+	
 	//std::future<int> fu_1 = std::async(factorial, 5);
 	std::future<int> fu_1 = std::async(std::launch::async,factorial, 5); // Create a Thread
 	//std::future<int> fu_2 = std::async(std::launch::deferred, factorial, 5); //NO Create a Thread
@@ -32,8 +33,7 @@ int main() {
 	// Future!!
 	x = fu_1.get();
 
-
-	cout << "Get from the Child : " << x << endl;
+	cout << "Get from the Main : " << x << endl;
 
 	return 0;
 }
@@ -52,7 +52,7 @@ int main() {
 //	int res = 1;
 //
 //	int N = f.get();
-//	for (int i = N; i > 1; i++) {
+//	for (int i = N; i > 1; i--) {
 //		res *= i;
 //	}
 //	cout << "Result is: " << res << endl;
